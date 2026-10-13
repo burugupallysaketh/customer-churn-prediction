@@ -21,60 +21,116 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+/* Light main canvas: use dark text for strong contrast */
 .stApp {
     background-color: #F4F7FC;
+    color: #111827;
 }
+
 .block-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+
+/* Main content text */
+[data-testid="stAppViewContainer"] .main,
+[data-testid="stAppViewContainer"] .main p,
+[data-testid="stAppViewContainer"] .main label,
+[data-testid="stAppViewContainer"] .main h1,
+[data-testid="stAppViewContainer"] .main h2,
+[data-testid="stAppViewContainer"] .main h3,
+[data-testid="stAppViewContainer"] .main h4,
+[data-testid="stAppViewContainer"] .main li,
+[data-testid="stAppViewContainer"] .main [data-testid="stMarkdownContainer"] {
+    color: #111827;
+}
+
+/* Dark sidebar: use white text */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #172554, #1E3A8A);
 }
+
 [data-testid="stSidebar"] * {
-    color: white !important;
+    color: #FFFFFF !important;
 }
+
+/* Colored header: use white text */
 .hero {
     background: linear-gradient(120deg, #1D4ED8, #7C3AED);
     padding: 30px;
     border-radius: 18px;
-    color: white;
+    color: #FFFFFF;
     margin-bottom: 25px;
 }
+
 .hero h1 {
-    color: white;
+    color: #FFFFFF !important;
     font-size: 34px;
 }
+
 .hero p {
-    color: #E0E7FF;
+    color: #E0E7FF !important;
     font-size: 16px;
 }
+
+/* White KPI cards: use dark text */
 .metric-card {
-    background: white;
+    background: #FFFFFF;
     padding: 20px;
     border-radius: 15px;
     border-left: 5px solid #6366F1;
     box-shadow: 0 4px 14px rgba(30, 41, 59, 0.08);
     min-height: 115px;
 }
+
 .metric-label {
-    color: #64748B;
+    color: #475569 !important;
     font-size: 14px;
 }
+
 .metric-value {
-    color: #172554;
+    color: #172554 !important;
     font-size: 27px;
     font-weight: 750;
     margin-top: 8px;
 }
+
 .section-title {
-    color: #172554;
+    color: #172554 !important;
     font-size: 23px;
     font-weight: 700;
     margin-top: 18px;
 }
+
+/* Form labels and input values */
+[data-testid="stAppViewContainer"] .main [data-testid="stWidgetLabel"] p,
+[data-testid="stAppViewContainer"] .main [data-testid="stWidgetLabel"] label {
+    color: #111827 !important;
+}
+
+[data-testid="stAppViewContainer"] .main input {
+    color: #111827 !important;
+}
+
+/* Dataframe text */
+[data-testid="stDataFrame"] {
+    color: #111827;
+}
 </style>
 """, unsafe_allow_html=True)
+
+
+# Keep Matplotlib chart backgrounds and labels readable on the light dashboard.
+plt.rcParams.update({
+    "figure.facecolor": "#FFFFFF",
+    "axes.facecolor": "#FFFFFF",
+    "text.color": "#111827",
+    "axes.labelcolor": "#111827",
+    "axes.titlecolor": "#111827",
+    "xtick.color": "#111827",
+    "ytick.color": "#111827",
+    "legend.labelcolor": "#111827",
+})
 
 # ==========================================
 # LOAD DATA AND PIPELINE
